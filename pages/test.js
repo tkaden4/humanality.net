@@ -1,6 +1,8 @@
 import Header from "../components/Header";
 import big5 from "../tests/big5";
-import { Container, Segment, ButtonGroup, Button, Divider } from "semantic-ui-react";
+import { Container, ButtonGroup, Button, Divider, Card, Icon } from "semantic-ui-react";
+import Nav from "../components/Nav";
+import Link from "next/link";
 
 // FIXME subset of these questions
 
@@ -42,20 +44,33 @@ export function Selection({ onSelected, selected, color, hover, size }) {
 }
 
 export function Question({ question, onAnswer }) {
-  const [state, setState] = React.useState(0);
-  const colors = ["#0081cf", "#4e78cf", "#776cc9", "#975dbb", "#b14da7"];
+  const [state, setState] = React.useState(undefined);
+  const questionRef = React.createRef();
+  const colors = ["#0081cf", "#1796c1", "#22a0ba", "#30adb2", "#41bda7"];
   return (
-    <div className="question" onClick={onAnswer}>
+    <div
+      className="question"
+      onClick={() => {
+        onAnswer();
+      }}
+      ref={questionRef}
+    >
       <div className="question-text">{big5.personalize(question.question)}</div>
       <div className="questions">
         {[-2, -1, 0, 1, 2].map((score, i) => (
           <Selection
             key={i}
-            selected={state === score}
-            onSelected={() => setState(score)}
+            selected={state !== undefined && state === score}
+            onSelected={() => {
+              questionRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+              setState(score);
+            }}
             color={colors[i]}
-            hover={`${colors[i]}66`}
-            size={`${(i - 2) * (i - 2) * 2.5 + 25}px`}
+            hover={`${colors[i]}88`}
+            size={`${score ** 2 * 2.5 + 35}px`}
           />
         ))}
       </div>
@@ -88,20 +103,38 @@ export function Test() {
     <div>
       <Header title="Take the Test" />
       <main className="test-container">
+        <Nav />
         <Container>
           {big5.questions.map((question, i) => (
             <React.Fragment key={i}>
               <Question question={question} onAnswer={scoringCallback(question.category, results)} />
-              {i === big5.questions.length - 1 ? <React.Fragment /> : <Divider>{/* ⚬ */}</Divider>}
+              <Divider>{/* ⚬ */}</Divider>
             </React.Fragment>
           ))}
-          <ButtonGroup>
-            <Button>Home</Button>
-            <Button.Or />
-            <Button>Results</Button>
-          </ButtonGroup>
+          <div style={{ display: "flex", justifyContent: "center", margin: "50px 0" }}>
+            <Link href="/results">
+              <Button
+                animated
+                circular
+                style={{
+                  color: "ghostwhite",
+                  fontSize: "1.2em",
+                  height: "40px",
+                  width: "140px",
+                  backgroundImage: "linear-gradient(to top right, #41bda7, #0081cf)",
+                }}
+              >
+                <Button.Content visible>Results</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="arrow right"></Icon>
+                </Button.Content>
+              </Button>
+            </Link>
+          </div>
         </Container>
       </main>
+      <footer></footer>
+      <style jsx>{``}</style>
     </div>
   );
 }

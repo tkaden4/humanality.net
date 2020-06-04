@@ -95,18 +95,17 @@ export default function IndexPage() {
         #logo-spinner {
           animation: spin 20s linear infinite;
         }
-        @media (max-width: 768px) {
-          #splash-description {
-            font-size: 12px;
-          }
-        }
-
         @keyframes spin {
           0% {
             transform: rotateZ(0);
           }
           100% {
             transform: rotateZ(360deg);
+          }
+        }
+        @media (max-width: 768px) {
+          #splash-description {
+            font-size: 12px;
           }
         }
 
