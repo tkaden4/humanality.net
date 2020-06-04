@@ -1,23 +1,11 @@
 import Link from "next/link";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import {
-  EmailIcon,
-  EmailShareButton,
-  FacebookIcon,
-  FacebookShareButton,
-  RedditIcon,
-  RedditShareButton,
-  TwitterIcon,
-  TwitterShareButton,
-} from "react-share";
-import { Button, Container, Icon, Label, Grid, Segment, Card, Divider, Menu, Rail } from "semantic-ui-react";
+
+import { Button, Container, Icon, Label, Grid, Card, Divider, Menu, Rail } from "semantic-ui-react";
 import Header from "../components/Header.js";
 import big5 from "../tests/big5.js";
-
-export const shareURL = "https://humanality.net";
+import SocialLinks from "../components/SocialLinks.js";
 
 export default function IndexPage() {
-  const [copied, setCopied] = React.useState(false);
   return (
     <div>
       <Header title="Free Personality Test" />
@@ -34,7 +22,7 @@ export default function IndexPage() {
                   className="title"
                   style={{ fontSize: "1.60em", fontWeight: "normal", maxWidth: "800px", marginTop: "25px" }}
                 >
-                  learn more about yourself through our
+                  Learn more about yourself through our
                   <div style={{ fontWeight: "bold", fontSize: "1.2em", lineHeight: "125%" }}>
                     5 factor personality test
                   </div>
@@ -61,68 +49,7 @@ export default function IndexPage() {
                   </Button.Content>
                 </Button>
               </Link>
-
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  maxWidth: `${32 * 7}px`,
-                  margin: "auto",
-                }}
-              >
-                <RedditShareButton url={shareURL}>
-                  <RedditIcon size={32} round />
-                </RedditShareButton>
-                <FacebookShareButton url={shareURL}>
-                  <FacebookIcon size={32} round />
-                </FacebookShareButton>
-                <TwitterShareButton
-                  url={shareURL}
-                  title="Humanality - Free Personality Test"
-                  hashtags={["personality", "personality-test"]}
-                >
-                  <TwitterIcon size={32} round />
-                </TwitterShareButton>
-                <EmailShareButton url={shareURL}>
-                  <EmailIcon size={32} round />
-                </EmailShareButton>
-                <CopyToClipboard
-                  text={shareURL}
-                  onCopy={() => {
-                    setTimeout(() => setCopied(false), 2000);
-                    setCopied(true);
-                  }}
-                >
-                  <div style={{ position: "relative" }}>
-                    <Icon
-                      circular
-                      name="linkify"
-                      color="red"
-                      inverted
-                      fitted
-                      style={{
-                        width: "31px!important",
-                        height: "31px!important",
-                        boxShadow: "none",
-                        cursor: "pointer",
-                      }}
-                    />
-                    <Label
-                      pointing
-                      style={{
-                        position: "absolute",
-                        transform: "translateX(-75%)",
-                        top: "75%",
-                        opacity: copied ? 1 : 0,
-                        transition: "opacity 0.5s",
-                      }}
-                    >
-                      Copied!
-                    </Label>
-                  </div>
-                </CopyToClipboard>
-              </div>
+              <SocialLinks />
             </Container>
           </div>
         </div>

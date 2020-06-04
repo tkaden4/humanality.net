@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import big5 from "../tests/big5";
-import { Container, Segment, ButtonGroup, Button, Form, Radio } from "semantic-ui-react";
+import { Container, Segment, ButtonGroup, Button, Divider } from "semantic-ui-react";
 
 // FIXME subset of these questions
 
@@ -10,56 +10,72 @@ export function scoringCallback(category, results) {
   };
 }
 
+export function Selection({ onSelected, selected, color, hover, size }) {
+  const selectedStyle = selected
+    ? {
+        backgroundColor: color,
+      }
+    : {};
+  return (
+    <div
+      className="selection"
+      style={{
+        ...selectedStyle,
+        borderRadius: "100%",
+      }}
+      onClick={() => onSelected()}
+    >
+      <style jsx scoped>{`
+        .selection {
+          height: ${size};
+          width: ${size};
+          background-color: transparent;
+          border: 4px solid ${color};
+          transition: background-color 0.1s linear;
+        }
+        .selection:hover {
+          background-color: ${hover};
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export function Question({ question, onAnswer }) {
   const [state, setState] = React.useState(0);
-  const questionSelection = {
-    height: "40px",
-    minWidth: "40px",
-    width: "16vw",
-    maxWidth: "100px",
-    backgroundColor: "#dadadc",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
-
-  const first = {
-    borderTopLeftRadius: "10px",
-    borderBottomLeftRadius: "10px",
-  };
-  const last = {
-    borderTopRightRadius: "10px",
-    borderBottomRightRadius: "10px",
-  };
+  const colors = ["#0081cf", "#4e78cf", "#776cc9", "#975dbb", "#b14da7"];
   return (
     <div className="question" onClick={onAnswer}>
-      <div>{big5.personalize(question.question)}</div>
-      <div>
-        <Form style={{ display: "flex", justifyContent: "center" }}>
-          <Form.Field>
-            <div style={{ ...questionSelection, ...first }}>
-              <Radio onChange={() => setState(-2)} checked={-2 === state} />
-            </div>
-          </Form.Field>
-          {[-1, 0, 1].map((x, i) => (
-            <Form.Field>
-              <div style={{ ...questionSelection }} key={i}>
-                <Radio onChange={() => setState(x)} checked={x === state} />
-              </div>
-            </Form.Field>
-          ))}
-          <Form.Field>
-            <div style={{ ...questionSelection, ...last }}>
-              <Radio onChange={() => setState(2)} checked={2 === state} />
-            </div>
-          </Form.Field>
-        </Form>
+      <div className="question-text">{big5.personalize(question.question)}</div>
+      <div className="questions">
+        {[-2, -1, 0, 1, 2].map((score, i) => (
+          <Selection
+            key={i}
+            selected={state === score}
+            onSelected={() => setState(score)}
+            color={colors[i]}
+            hover={`${colors[i]}66`}
+            size={`${(i - 2) * (i - 2) * 2.5 + 25}px`}
+          />
+        ))}
       </div>
       <style jsx scoped>{`
         .question {
           text-align: center;
           font-size: 22px;
           color: #1a1a1c;
+          margin: 50px 0;
+        }
+        .question-text {
+          margin: 25px 0;
+        }
+        .questions {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          max-width: 80vw;
+          width: 500px;
+          margin: auto;
         }
       `}</style>
     </div>
@@ -73,19 +89,19 @@ export function Test() {
       <Header title="Take the Test" />
       <main className="test-container">
         <Container>
-          <Segment>
-            {big5.questions.map((x, i) => (
-              <Question key={i} question={x} onAnswer={scoringCallback(x.category, results)} />
-            ))}
-          </Segment>
+          {big5.questions.map((question, i) => (
+            <React.Fragment key={i}>
+              <Question question={question} onAnswer={scoringCallback(question.category, results)} />
+              {i === big5.questions.length - 1 ? <React.Fragment /> : <Divider>{/* ⚬ */}</Divider>}
+            </React.Fragment>
+          ))}
           <ButtonGroup>
-            <Button>Results</Button>
-            <Button.Or />
             <Button>Home</Button>
+            <Button.Or />
+            <Button>Results</Button>
           </ButtonGroup>
         </Container>
       </main>
-      <style jsx>{``}</style>
     </div>
   );
 }
