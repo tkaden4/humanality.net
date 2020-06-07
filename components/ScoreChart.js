@@ -3,7 +3,6 @@ import { Card, Progress } from "semantic-ui-react";
 export default ScoreChart;
 
 export function ScoreChart({ scores, time, ...props }) {
-  console.log(scores);
   return (
     <Card {...props}>
       <Card.Content>
