@@ -11,10 +11,11 @@ import {
 } from "react-share";
 import { Icon, Label } from "semantic-ui-react";
 
-export const shareURL = "https://humanality.net";
+export const mainPage = "https://humanality.net";
 
-export function SocialLinks({ vertical = false, ...props }) {
+export function SocialLinks({ vertical = false, url, ...props }) {
   const [copied, setCopied] = React.useState(false);
+  const shareURL = url || mainPage;
   return (
     <div {...props}>
       <div
@@ -72,6 +73,7 @@ export function SocialLinks({ vertical = false, ...props }) {
                 top: "75%",
                 opacity: copied ? 1 : 0,
                 transition: "opacity 0.5s",
+                zIndex: 100,
               }}
             >
               Copied!

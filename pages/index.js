@@ -53,7 +53,7 @@ export default function IndexPage() {
             </Container>
           </div>
         </div>
-        <Divider hidden />
+        {/* <Divider hidden />
         <Container textAlign="center">
           <Grid stackable centered columns={3}>
             {big5.categories.map((category, i) => (
@@ -67,7 +67,7 @@ export default function IndexPage() {
               </Grid.Column>
             ))}
           </Grid>
-        </Container>
+        </Container> */}
       </main>
       <footer></footer>
 

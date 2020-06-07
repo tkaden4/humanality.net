@@ -48,16 +48,10 @@ export function Question({ question, onAnswer }) {
   const questionRef = React.createRef();
   const colors = ["#0081cf", "#1796c1", "#22a0ba", "#30adb2", "#41bda7"];
   return (
-    <div
-      className="question"
-      onClick={() => {
-        onAnswer();
-      }}
-      ref={questionRef}
-    >
+    <div className="question" ref={questionRef}>
       <div className="question-text">{big5.personalize(question.question)}</div>
       <div className="questions">
-        {[-2, -1, 0, 1, 2].map((score, i) => (
+        {[1, 2, 3, 4, 5].map((score, i) => (
           <Selection
             key={i}
             selected={state !== undefined && state === score}
@@ -67,10 +61,11 @@ export function Question({ question, onAnswer }) {
                 block: "center",
               });
               setState(score);
+              onAnswer(score);
             }}
             color={colors[i]}
             hover={`${colors[i]}88`}
-            size={`${score ** 2 * 2.5 + 35}px`}
+            size={`${(score - 3) ** 2 * 2.5 + 35}px`}
           />
         ))}
       </div>
@@ -97,8 +92,12 @@ export function Question({ question, onAnswer }) {
   );
 }
 
+export function resultsURL(results) {
+  return `/results/?o=${results["Openness"]}&n=${results["Emotional Stability"]}&c=${results["Conscientiousness"]}&a=${results["Agreeableness"]}&e=${results["Extroversion"]}`;
+}
+
 export function Test() {
-  const results = Object.fromEntries(big5.categories.map((x) => [x, 0]));
+  const [results, setResults] = React.useState(Object.fromEntries(big5.categories.map((x) => [x, 0])));
   return (
     <div>
       <Header title="Take the Test" />
@@ -107,12 +106,25 @@ export function Test() {
         <Container>
           {big5.questions.map((question, i) => (
             <React.Fragment key={i}>
-              <Question question={question} onAnswer={scoringCallback(question.category, results)} />
-              <Divider>{/* ⚬ */}</Divider>
+              <Question
+                question={question}
+                onAnswer={(score) => {
+                  // score is 1 through 5
+                  // -1 or 1
+                  const direction = Number.parseInt(question.score);
+                  // [1, 5]
+                  const actual = direction === -1 ? 6 - score : score;
+                  setResults({
+                    ...results,
+                    [question.category]: results[question.category] + actual,
+                  });
+                }}
+              />
+              <Divider></Divider>
             </React.Fragment>
           ))}
           <div style={{ display: "flex", justifyContent: "center", margin: "50px 0" }}>
-            <Link href="/results">
+            <Link href={resultsURL(results)}>
               <Button
                 animated
                 circular

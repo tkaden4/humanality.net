@@ -1,4 +1,4 @@
-export const categories = ["Extroversion", "Agreeableness", "Conscientiousness", "Emotional Stability", "Intellect"];
+export const categories = ["Extroversion", "Agreeableness", "Conscientiousness", "Emotional Stability", "Openness"];
 
 export const questions = [
   { question: "Am interested in people.", category: "Agreeableness", score: "1" },
@@ -60,46 +60,46 @@ export const questions = [
   { question: "Take offense easily.", category: "Emotional Stability", score: "-1" },
   { question: "Get caught up in my problems.", category: "Emotional Stability", score: "-1" },
   { question: "Grumble about things.", category: "Emotional Stability", score: "-1" },
-  { question: "Am the life of the party.", category: "Extraversion", score: "1" },
-  { question: "Feel comfortable around people.", category: "Extraversion", score: "1" },
-  { question: "Start conversations.", category: "Extraversion", score: "1" },
-  { question: "Talk to a lot of different people at parties.", category: "Extraversion", score: "1" },
-  { question: "Don't mind being the center of attention.", category: "Extraversion", score: "1" },
-  { question: "Make friends easily.", category: "Extraversion", score: "1" },
-  { question: "Take charge.", category: "Extraversion", score: "1" },
-  { question: "Know how to captivate people.", category: "Extraversion", score: "1" },
-  { question: "Feel at ease with people.", category: "Extraversion", score: "1" },
-  { question: "Am skilled in handling social situations.", category: "Extraversion", score: "1" },
-  { question: "Don't talk a lot.", category: "Extraversion", score: "-1" },
-  { question: "Keep in the background.", category: "Extraversion", score: "-1" },
-  { question: "Have little to say.", category: "Extraversion", score: "-1" },
-  { question: "Don't like to draw attention to myself.", category: "Extraversion", score: "-1" },
-  { question: "Am quiet around strangers.", category: "Extraversion", score: "-1" },
-  { question: "Find it difficult to approach others.", category: "Extraversion", score: "-1" },
-  { question: "Often feel uncomfortable around others.", category: "Extraversion", score: "-1" },
-  { question: "Bottle up my feelings.", category: "Extraversion", score: "-1" },
-  { question: "Am a very private person.", category: "Extraversion", score: "-1" },
-  { question: "Wait for others to lead the way.", category: "Extraversion", score: "-1" },
-  { question: "Have a rich vocabulary.", category: "Intellect", score: "1" },
-  { question: "Have a vivid imagination.", category: "Intellect", score: "1" },
-  { question: "Have excellent ideas.", category: "Intellect", score: "1" },
-  { question: "Am quick to understand things.", category: "Intellect", score: "1" },
-  { question: "Use difficult words.", category: "Intellect", score: "1" },
-  { question: "Spend time reflecting on things.", category: "Intellect", score: "1" },
-  { question: "Am full of ideas.", category: "Intellect", score: "1" },
-  { question: "Carry the conversation to a higher level.", category: "Intellect", score: "1" },
-  { question: "Catch on to things quickly.", category: "Intellect", score: "1" },
-  { question: "Can handle a lot of information.", category: "Intellect", score: "1" },
-  { question: "Love to think up new ways of doing things.", category: "Intellect", score: "1" },
-  { question: "Love to read challenging material.", category: "Intellect", score: "1" },
-  { question: "Am good at many things.", category: "Intellect", score: "1" },
-  { question: "Have difficulty understanding abstract ideas.", category: "Intellect", score: "-1" },
-  { question: "Am not interested in abstract ideas.", category: "Intellect", score: "-1" },
-  { question: "Do not have a good imagination.", category: "Intellect", score: "-1" },
-  { question: "Try to avoid complex people.", category: "Intellect", score: "-1" },
-  { question: "Have difficulty imagining things.", category: "Intellect", score: "-1" },
-  { question: "Avoid difficult reading material.", category: "Intellect", score: "-1" },
-  { question: "Will not probe deeply into a subject.", category: "Intellect", score: "-1" },
+  { question: "Am the life of the party.", category: "Extroversion", score: "1" },
+  { question: "Feel comfortable around people.", category: "Extroversion", score: "1" },
+  { question: "Start conversations.", category: "Extroversion", score: "1" },
+  { question: "Talk to a lot of different people at parties.", category: "Extroversion", score: "1" },
+  { question: "Don't mind being the center of attention.", category: "Extroversion", score: "1" },
+  { question: "Make friends easily.", category: "Extroversion", score: "1" },
+  { question: "Take charge.", category: "Extroversion", score: "1" },
+  { question: "Know how to captivate people.", category: "Extroversion", score: "1" },
+  { question: "Feel at ease with people.", category: "Extroversion", score: "1" },
+  { question: "Am skilled in handling social situations.", category: "Extroversion", score: "1" },
+  { question: "Don't talk a lot.", category: "Extroversion", score: "-1" },
+  { question: "Keep in the background.", category: "Extroversion", score: "-1" },
+  { question: "Have little to say.", category: "Extroversion", score: "-1" },
+  { question: "Don't like to draw attention to myself.", category: "Extroversion", score: "-1" },
+  { question: "Am quiet around strangers.", category: "Extroversion", score: "-1" },
+  { question: "Find it difficult to approach others.", category: "Extroversion", score: "-1" },
+  { question: "Often feel uncomfortable around others.", category: "Extroversion", score: "-1" },
+  { question: "Bottle up my feelings.", category: "Extroversion", score: "-1" },
+  { question: "Am a very private person.", category: "Extroversion", score: "-1" },
+  { question: "Wait for others to lead the way.", category: "Extroversion", score: "-1" },
+  { question: "Have a rich vocabulary.", category: "Openness", score: "1" },
+  { question: "Have a vivid imagination.", category: "Openness", score: "1" },
+  { question: "Have excellent ideas.", category: "Openness", score: "1" },
+  { question: "Am quick to understand things.", category: "Openness", score: "1" },
+  { question: "Use difficult words.", category: "Openness", score: "1" },
+  { question: "Spend time reflecting on things.", category: "Openness", score: "1" },
+  { question: "Am full of ideas.", category: "Openness", score: "1" },
+  { question: "Carry the conversation to a higher level.", category: "Openness", score: "1" },
+  { question: "Catch on to things quickly.", category: "Openness", score: "1" },
+  { question: "Can handle a lot of information.", category: "Openness", score: "1" },
+  { question: "Love to think up new ways of doing things.", category: "Openness", score: "1" },
+  { question: "Love to read challenging material.", category: "Openness", score: "1" },
+  { question: "Am good at many things.", category: "Openness", score: "1" },
+  { question: "Have difficulty understanding abstract ideas.", category: "Openness", score: "-1" },
+  { question: "Am not interested in abstract ideas.", category: "Openness", score: "-1" },
+  { question: "Do not have a good imagination.", category: "Openness", score: "-1" },
+  { question: "Try to avoid complex people.", category: "Openness", score: "-1" },
+  { question: "Have difficulty imagining things.", category: "Openness", score: "-1" },
+  { question: "Avoid difficult reading material.", category: "Openness", score: "-1" },
+  { question: "Will not probe deeply into a subject.", category: "Openness", score: "-1" },
 ];
 
 export const keywords = {
@@ -112,7 +112,7 @@ export const keywords = {
     "Seeks group harmony",
   ],
   Conscientiousness: ["Disciplined", "Dutiful", "Reliable", "Less spontaneous", "Focused", "Stubborn"],
-  Intellect: ["Unpredictable", "Pursues experiences", "Open-minded", "Curious", "Spontaneous"],
+  Openness: ["Unpredictable", "Pursues experiences", "Open-minded", "Curious", "Spontaneous"],
   "Emotional Stability": ["Calm", "Less easily upset", "Less pessimistic"],
 };
 
@@ -120,9 +120,22 @@ export function personalize(question) {
   return `I ${question.toLowerCase()}`;
 }
 
+export function categoryTotal(category) {
+  return questions.filter((x) => x.category === category).reduce((acc, _) => acc + 5, 0);
+}
+
+export function score(results) {
+  const totals = Object.fromEntries(categories.map((category) => [category, categoryTotal(category)]));
+  return Object.fromEntries(
+    Object.keys(results).map((category) => [category, Math.round((100 * results[category]) / totals[category])])
+  );
+}
+
 export default {
   categories,
   questions,
   keywords,
   personalize,
+  score,
+  categoryTotal,
 };
