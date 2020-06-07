@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export const categories = ["Extroversion", "Agreeableness", "Conscientiousness", "Emotional Stability", "Openness"];
 
 export const questions = [
@@ -125,9 +127,9 @@ export function categoryTotal(category) {
 }
 
 export function score(results) {
-  const totals = Object.fromEntries(categories.map((category) => [category, categoryTotal(category)]));
-  return Object.fromEntries(
-    Object.keys(results).map((category) => [category, Math.round((100 * results[category]) / totals[category])])
+  const totals = _.fromPairs(categories.map((category) => [category, categoryTotal(category)]));
+  return _.fromPairs(
+    _.keys(results).map((category) => [category, Math.round((100 * results[category]) / totals[category])])
   );
 }
 

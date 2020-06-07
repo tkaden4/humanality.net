@@ -3,6 +3,7 @@ import big5 from "../tests/big5";
 import { Container, ButtonGroup, Button, Divider, Card, Icon } from "semantic-ui-react";
 import Nav from "../components/Nav";
 import Link from "next/link";
+import _ from "lodash";
 
 // FIXME subset of these questions
 
@@ -97,7 +98,7 @@ export function resultsURL(results) {
 }
 
 export function Test() {
-  const [results, setResults] = React.useState(Object.fromEntries(big5.categories.map((x) => [x, 0])));
+  const [results, setResults] = React.useState(_.fromPairs(big5.categories.map((x) => [x, 0])));
   return (
     <div>
       <Header title="Take the Test" />
