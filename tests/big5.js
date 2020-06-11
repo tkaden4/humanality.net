@@ -126,11 +126,20 @@ export function categoryTotal(category) {
   return questions.filter((x) => x.category === category).reduce((acc, _) => acc + 5, 0);
 }
 
-export function score(results) {
-  const totals = _.fromPairs(categories.map((category) => [category, categoryTotal(category)]));
-  return _.fromPairs(
-    _.keys(results).map((category) => [category, Math.round((100 * results[category]) / totals[category])])
+export function score(questionResults) {
+  const defaultScores = _.fromPairs(categories.map((category) => [category, []]));
+  const sorted = _.merge(
+    defaultScores,
+    _.groupBy(questionResults, (result) => result.category)
   );
+  const maxValues = _.fromPairs(categories.map((category) => [category, categoryTotal(category)]));
+  const totals = {};
+  categories.forEach((category) => {
+    totals[category] = Math.trunc(
+      (100 * sorted[category].reduce((acc, answer) => acc + answer.score, 0)) / maxValues[category]
+    );
+  });
+  return totals;
 }
 
 export default {

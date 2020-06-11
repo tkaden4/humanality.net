@@ -20,7 +20,7 @@ export function Header({ title }) {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="keywords" content="personality, test, quiz, introspective" />
-      <meta name="description" content="Learn about your 5 factor personality type with a free test." />
+      <meta name="description" content="Learn about your 5 factor personality type with our free test!" />
       <script
         data-ad-client="ca-pub-8018805392583698"
         async

@@ -1,9 +1,9 @@
-import Header from "../components/Header";
-import big5 from "../tests/big5";
-import { Container, ButtonGroup, Button, Divider, Card, Icon } from "semantic-ui-react";
-import Nav from "../components/Nav";
-import Link from "next/link";
 import _ from "lodash";
+import Link from "next/link";
+import { Button, Container, Divider, Icon } from "semantic-ui-react";
+import Header from "../components/Header";
+import Nav from "../components/Nav";
+import big5 from "../tests/big5";
 
 // FIXME subset of these questions
 
@@ -35,9 +35,6 @@ export function Selection({ onSelected, selected, color, hover, size }) {
           background-color: transparent;
           border: 4px solid ${color};
           transition: background-color 0.1s linear;
-        }
-        .selection:hover {
-          background-color: ${hover};
         }
       `}</style>
     </div>
@@ -93,12 +90,14 @@ export function Question({ question, onAnswer }) {
   );
 }
 
-export function resultsURL(results) {
-  return `/results/?o=${results["Openness"]}&n=${results["Emotional Stability"]}&c=${results["Conscientiousness"]}&a=${results["Agreeableness"]}&e=${results["Extroversion"]}`;
+export function resultsURL(answers) {
+  const results = big5.score(answers);
+  console.log(results);
+  return `/results/?o=${results["Openness"]}&s=${results["Emotional Stability"]}&c=${results["Conscientiousness"]}&a=${results["Agreeableness"]}&e=${results["Extroversion"]}`;
 }
 
 export function Test() {
-  const [results, setResults] = React.useState(_.fromPairs(big5.categories.map((x) => [x, 0])));
+  const [results, setResults] = React.useState({});
   return (
     <div>
       <Header title="Take the Test" />
@@ -114,21 +113,22 @@ export function Test() {
                   // -1 or 1
                   const direction = Number.parseInt(question.score);
                   // [1, 5]
-                  const actual = direction === -1 ? 6 - score : score;
+                  const directedScore = direction === -1 ? 6 - score : score;
                   setResults({
                     ...results,
-                    [question.category]: results[question.category] + actual,
+                    [question.question]: { category: question.category, score: directedScore },
                   });
                 }}
               />
-              <Divider></Divider>
+              <Divider />
             </React.Fragment>
           ))}
           <div style={{ display: "flex", justifyContent: "center", margin: "50px 0" }}>
-            <Link href={resultsURL(results)}>
+            <Link href={resultsURL(_.values(results))}>
               <Button
                 animated
                 circular
+                disabled={_.keys(results).length !== big5.questions.length}
                 style={{
                   color: "ghostwhite",
                   fontSize: "1.2em",

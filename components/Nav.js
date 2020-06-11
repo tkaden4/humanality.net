@@ -1,12 +1,7 @@
-import { Menu, Container } from "semantic-ui-react";
 import Link from "next/link";
+import { Container } from "semantic-ui-react";
 
 export function Nav() {
-  const option = {
-    fontSize: "18px",
-    color: "ghostwhite",
-    fontWeight: "bold",
-  };
   return (
     <div className="nav">
       <Container text textAlign="center">

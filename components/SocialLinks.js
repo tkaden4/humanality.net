@@ -13,6 +13,9 @@ import { Icon, Label } from "semantic-ui-react";
 
 export const mainPage = "https://humanality.net";
 
+// TODO add something to indicate these are "share" links as opposed to
+// the social pages for the service itself
+
 export function SocialLinks({ vertical = false, url, ...props }) {
   const [copied, setCopied] = React.useState(false);
   const shareURL = url || mainPage;

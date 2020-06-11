@@ -4,7 +4,6 @@ import { useScores, sampleScores, sampleTime } from "../../components/Score";
 import { Container, Divider, Segment, Card } from "semantic-ui-react";
 import SocialLinks from "../../components/SocialLinks";
 import ScoreChart from "../../components/ScoreChart";
-import big5 from "../../tests/big5";
 
 export function ScorePage({ scores }) {
   const time = sampleTime();
@@ -14,20 +13,12 @@ export function ScorePage({ scores }) {
     setShareURL(window.location);
   }, []);
 
-  const results = big5.score({
-    Openness: scores.o,
-    "Emotional Stability": scores.n,
-    Conscientiousness: scores.c,
-    Agreeableness: scores.a,
-    Extroversion: scores.e,
-  });
-
   return (
     <React.Fragment>
       <Nav />
       <Container textAlign="center">
         <Divider hidden />
-        <ScoreChart scores={results} time={time} style={{ margin: "auto" }} />
+        <ScoreChart scores={scores} time={time} style={{ margin: "auto" }} />
         <Divider hidden />
         <div style={{ textAlign: "center" }}>
           <h3>Share Results</h3>

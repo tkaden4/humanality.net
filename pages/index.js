@@ -1,8 +1,6 @@
 import Link from "next/link";
-
-import { Button, Container, Icon, Label, Grid, Card, Divider, Menu, Rail } from "semantic-ui-react";
+import { Button, Container, Icon } from "semantic-ui-react";
 import Header from "../components/Header.js";
-import big5 from "../tests/big5.js";
 import SocialLinks from "../components/SocialLinks.js";
 
 export default function IndexPage() {
@@ -49,25 +47,11 @@ export default function IndexPage() {
                   </Button.Content>
                 </Button>
               </Link>
+              <h4 style={{ margin: "auto" }}>Share</h4>
               <SocialLinks />
             </Container>
           </div>
         </div>
-        {/* <Divider hidden />
-        <Container textAlign="center">
-          <Grid stackable centered columns={3}>
-            {big5.categories.map((category, i) => (
-              <Grid.Column key={i}>
-                <Card fluid>
-                  <Card.Content>
-                    <Card.Header>{category}</Card.Header>
-                    <Card.Description style={{ height: "12ch" }}>{big5.keywords[category].join(", ")}</Card.Description>
-                  </Card.Content>
-                </Card>
-              </Grid.Column>
-            ))}
-          </Grid>
-        </Container> */}
       </main>
       <footer></footer>
 
