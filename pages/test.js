@@ -92,7 +92,6 @@ export function Question({ question, onAnswer }) {
 
 export function resultsURL(answers) {
   const results = big5.score(answers);
-  console.log(results);
   return `/results/?o=${results["Openness"]}&s=${results["Emotional Stability"]}&c=${results["Conscientiousness"]}&a=${results["Agreeableness"]}&e=${results["Extroversion"]}`;
 }
 

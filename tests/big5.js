@@ -2,7 +2,7 @@ import _ from "lodash";
 
 export const categories = ["Extroversion", "Agreeableness", "Conscientiousness", "Emotional Stability", "Openness"];
 
-export const questions = [
+export const rawQuestions = [
   { question: "Am interested in people.", category: "Agreeableness", score: "1" },
   { question: "Sympathize with others' feelings.", category: "Agreeableness", score: "1" },
   { question: "Have a soft heart.", category: "Agreeableness", score: "1" },
@@ -45,23 +45,23 @@ export const questions = [
   { question: "Am relaxed most of the time.", category: "Emotional Stability", score: "1" },
   { question: "Seldom feel blue.", category: "Emotional Stability", score: "1" },
   { question: "Am not easily bothered by things.", category: "Emotional Stability", score: "1" },
-  { question: "Rarely get irritated.", category: "Emotional Stability", score: "1" },
+  // { question: "Rarely get irritated.", category: "Emotional Stability", score: "1" },
   { question: "Seldom get mad.", category: "Emotional Stability", score: "1" },
   { question: "Get stressed out easily.", category: "Emotional Stability", score: "-1" },
   { question: "Worry about things.", category: "Emotional Stability", score: "-1" },
   { question: "Am easily disturbed.", category: "Emotional Stability", score: "-1" },
   { question: "Get upset easily.", category: "Emotional Stability", score: "-1" },
-  { question: "Change my mood a lot.", category: "Emotional Stability", score: "-1" },
+  // { question: "Change my mood a lot.", category: "Emotional Stability", score: "-1" },
   { question: "Have frequent mood swings.", category: "Emotional Stability", score: "-1" },
   { question: "Get irritated easily.", category: "Emotional Stability", score: "-1" },
   { question: "Often feel blue.", category: "Emotional Stability", score: "-1" },
-  { question: "Get angry easily.", category: "Emotional Stability", score: "-1" },
+  // { question: "Get angry easily.", category: "Emotional Stability", score: "-1" },
   { question: "Panic easily.", category: "Emotional Stability", score: "-1" },
   { question: "Feel threatened easily.", category: "Emotional Stability", score: "-1" },
   { question: "Get overwhelmed by emotions.", category: "Emotional Stability", score: "-1" },
   { question: "Take offense easily.", category: "Emotional Stability", score: "-1" },
   { question: "Get caught up in my problems.", category: "Emotional Stability", score: "-1" },
-  { question: "Grumble about things.", category: "Emotional Stability", score: "-1" },
+  // { question: "Grumble about things.", category: "Emotional Stability", score: "-1" },
   { question: "Am the life of the party.", category: "Extroversion", score: "1" },
   { question: "Feel comfortable around people.", category: "Extroversion", score: "1" },
   { question: "Start conversations.", category: "Extroversion", score: "1" },
@@ -103,6 +103,14 @@ export const questions = [
   { question: "Avoid difficult reading material.", category: "Openness", score: "-1" },
   { question: "Will not probe deeply into a subject.", category: "Openness", score: "-1" },
 ];
+
+export function createSelection() {
+  const groups = _.groupBy(rawQuestions, (question) => question.category);
+  const zipped = _.zip(..._.values(groups));
+  return _.flatten(zipped).filter((x) => !_.isUndefined(x));
+}
+
+export const questions = createSelection();
 
 export const keywords = {
   Extroversion: ["Socially engaged", "Enthusiastic", "Assertive", "Full of energy", "Breadthful"],
