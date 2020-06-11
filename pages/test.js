@@ -102,7 +102,9 @@ export function Test() {
       <Header title="Take the Test" />
       <main className="test-container">
         <Nav />
-        <Container>
+        <Container textAlign="center">
+          <Divider hidden></Divider>
+          <h1>{big5.questions.length} Questions</h1>
           {big5.questions.map((question, i) => (
             <React.Fragment key={i}>
               <Question
@@ -146,7 +148,6 @@ export function Test() {
         </Container>
       </main>
       <footer></footer>
-      <style jsx>{``}</style>
     </div>
   );
 }
